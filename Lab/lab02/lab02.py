@@ -18,7 +18,7 @@ def composite_identity(f, g):
     def func(x) :
         return f(g(x)) == g(f(x))
     
-    return func(x)
+    return func
 
 
 def sum_digits(y):
@@ -66,6 +66,15 @@ def count_cond(condition):
     """
     "*** YOUR CODE HERE ***"
 
+    def func (n) :
+        sum = 0
+        for i in range(1, n + 1) :
+            if (condition(n, i)) :
+                sum += 1
+        return sum
+
+    return func
+ 
 
 def multiple(a, b):
     """Return the smallest number n that is a multiple of both a and b.
@@ -76,6 +85,13 @@ def multiple(a, b):
     42
     """
     "*** YOUR CODE HERE ***"
+
+    def func(x, y) :
+        if (y == 0) :
+            return x
+        return func(y, x % y)
+
+    return a * b // func(a, b)
 
 
 

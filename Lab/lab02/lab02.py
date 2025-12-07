@@ -122,4 +122,20 @@ def cycle(f1, f2, f3):
     19
     """
     "*** YOUR CODE HERE ***"
+    def run_in_cycle(n) :
+ 
+        def cal(x) :
+            res = x
+            for i in range(1, n + 1) :
+                if (i % 3 == 1) :
+                    res = f1(res)
+                elif (i % 3 == 2) :
+                    res = f2(res)
+                else :
+                    res = f3(res)
+
+            return res
+        return cal
+    return run_in_cycle
+
 

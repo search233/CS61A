@@ -135,6 +135,15 @@ def count_dollars(total):
     True
     """
     "*** YOUR CODE HERE ***"
+    def cal(bill, total) :
+        if (total == 0) :
+            return 1
+        if (total < 0 or bill == None) :
+            return 0
+
+        return (cal(bill, total - bill) + cal(next_smaller_dollar(bill), total)) 
+
+    return cal(100, total)
 
 
 def next_larger_dollar(bill):
@@ -171,6 +180,15 @@ def count_dollars_upward(total):
     True
     """
     "*** YOUR CODE HERE ***"
+    def cal(bill, total) :
+        if (total == 0) :
+            return 1
+        if (total < 0 or bill == None) :
+            return 0
+
+        return (cal(bill, total - bill) + cal(next_larger_dollar(bill), total)) 
+
+    return cal(1, total)
 
 
 def print_move(origin, destination):

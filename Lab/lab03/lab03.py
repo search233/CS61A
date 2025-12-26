@@ -16,7 +16,6 @@ def print_if(s, f):
     for x in s:
         if (f(x)) :
             print(x)
-            print('\n')
         "*** YOUR CODE HERE ***"
 
 
@@ -125,4 +124,3 @@ def make_onion(f, g):
         else:
             return can_reach(____, ____, limit - 1) or can_reach(____, ____, limit - 1)
     return can_reach
-

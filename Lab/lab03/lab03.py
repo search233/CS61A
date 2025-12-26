@@ -14,6 +14,9 @@ def print_if(s, f):
     None
     """
     for x in s:
+        if (f(x)) :
+            print(x)
+            print('\n')
         "*** YOUR CODE HERE ***"
 
 

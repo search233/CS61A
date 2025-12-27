@@ -47,6 +47,7 @@ def boar_brawl(player_score, opponent_score):
     """
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    return max(1, 3 * abs(player_score % 10 - opponent_score // 10 % 10))
     # END PROBLEM 2
 
 
@@ -65,6 +66,10 @@ def take_turn(num_rolls, player_score, opponent_score, dice=six_sided):
     assert num_rolls <= 10, 'Cannot roll more than 10 dice.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if (num_rolls == 0) :
+        return boar_brawl(player_score, opponent_score)
+    else :
+        return roll_dice(num_rolls, dice)
     # END PROBLEM 3
 
 
@@ -90,12 +95,25 @@ def num_factors(n):
     """Return the number of factors of N, including 1 and N itself."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    sum = 0
+    for i in range(1, n + 1) :
+        if(n % i == 0) :
+            sum += 1
+
+    return sum
     # END PROBLEM 4
 
 def sus_points(score):
     """Return the new score of a player taking into account the Sus Fuss rule."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    sum = num_factors(score)
+    ans = score
+    if (sum == 3 or sum == 4) :
+        while (not is_prime(ans)) :
+            ans += 1
+
+    return ans
     # END PROBLEM 4
 
 def sus_update(num_rolls, player_score, opponent_score, dice=six_sided):
@@ -104,6 +122,8 @@ def sus_update(num_rolls, player_score, opponent_score, dice=six_sided):
     """
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    player_score = simple_update(num_rolls, player_score, opponent_score, dice)
+    return sus_points(player_score)
     # END PROBLEM 4
 
 
@@ -143,7 +163,14 @@ def play(strategy0, strategy1, update,
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
-    # END PROBLEM 5
+    while (score0 < goal and score1 < goal) :
+        if (who == 0) :
+            score0 = update(strategy0(score0, score1), score0, score1, dice)
+        else :
+            score1 = update(strategy1(score1, score0), score1, score0, dice)
+
+        who = 1 - who
+    # END PROBLEM 52
     return score0, score1
 
 
